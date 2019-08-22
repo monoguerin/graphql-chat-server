@@ -12,12 +12,14 @@ function applyRestRoutes(app) {
     const {
       message,
       from,
+      fromName,
     } = req.body;
 
     const newMessage = {
       id: CHATS.length,
       message,
       from,
+      fromName,
     };
 
     CHATS.push(newMessage);

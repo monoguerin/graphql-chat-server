@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const { createServer } = require('http');
 const { ApolloServer } = require('apollo-server-express');
@@ -7,13 +9,17 @@ const typeDefs = require('./graphql/schema');
 const resolvers = require('./graphql/resolvers');
 const applyRestRoutes = require('./rest/applyRestRoutes');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || 'localhost';
 
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   subscriptions: {
-    path: `ws://localhost:${PORT}/subscriptions`,
+    path: `ws://${HOST}:${PORT}/subscriptions`,
+    onConnect(...args) {
+      console.log(args);
+    },
   },
 });
 

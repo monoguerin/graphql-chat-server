@@ -3,7 +3,8 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type Chat {
     id: Int!
-    from: String!
+    from: ID!
+    fromName: String!
     message: String!
   }
 
@@ -12,7 +13,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    sendMessage(from: String!, message: String!): Chat
+    sendMessage(from: ID!,  fromName: String!, message: String!): Chat
   }
 
   type Subscription {

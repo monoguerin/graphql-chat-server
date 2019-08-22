@@ -11,10 +11,11 @@ const resolvers = {
   },
 
   Mutation: {
-    sendMessage(root, { from, message }) {
+    sendMessage(root, { from, fromName, message }) {
       const newMessage = {
         id: CHATS.length,
         from,
+        fromName,
         message,
       };
 
